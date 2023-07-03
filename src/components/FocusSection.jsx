@@ -29,7 +29,7 @@ const FocusSection = () => {
             </p>
           </div>
           <div className="mb-10 md:mr-10 p-5 rounded-xl bg-gradient-to-r from-[#aeddd0] to-[#76d7cc] max-w-[320px] max-h-[290px] mx-auto flex flex-col justify-center">
-            <div className="flex border-b-2 pb-3">
+            <div className="flex border-b-2 mt-2 pb-3">
               <FontAwesomeIcon
                 icon={faTruckFast}
                 style={{ color: "#ffffff" }}

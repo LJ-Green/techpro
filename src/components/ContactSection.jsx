@@ -1,16 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LogoIcon from "./../assets/IconLogo.png";
 import Name from "./../assets/CompanyName.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-
+import "../index.css";
 
 const ContactSection = () => {
   const [showPopup, setShowPopup] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Add isLoading state
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setShowPopup(true);
+    setIsLoading(true); // Show the loader
+
+    // Simulate asynchronous API request
+    setTimeout(() => {
+      console.log(formData);
+      setIsLoading(false); // Hide the loader
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+      setShowPopup(true);
+    }, 2000);
   };
 
   const closePopup = () => {
@@ -34,22 +58,42 @@ const ContactSection = () => {
         <form onSubmit={handleSubmit}>
           <div className="max-w-[350px] mx-auto">
             <input
+              value={formData.name}
+              onChange={handleChange}
+              name="name"
               className="bg-[#51d5a9] w-full pl-4 p-2 rounded-full shadow-inner placeholder-white"
               type="text"
               placeholder="Name"
             />
             <input
+              value={formData.email}
+              onChange={handleChange}
+              name="email"
               className="bg-[#51d5a9] my-5 w-full pl-4 p-2 rounded-full shadow-inner placeholder-white"
               type="text"
               placeholder="Email"
             />
             <input
+              value={formData.message}
+              onChange={handleChange}
+              name="message"
               className="bg-[#51d5a9] mb-5 pb-[110px] w-full h-[150px] pl-4 p-2 rounded-2xl shadow-inner placeholder-white"
               type="text"
               placeholder="Message"
             />
-            <button className="bg-[#cfcfcf] rounded-full px-10 p-3 text-white drop-shadow-md w-full">
-              Submit
+            <button
+              className="bg-[#cfcfcf] rounded-full px-10 p-3 text-white drop-shadow-md w-full"
+              disabled={isLoading} // Disable the button when loading
+            >
+              {isLoading ? ( // Show loader if loading, else show "Submit"
+                <div className="three-body drop-shadow-lg">
+                  <div className="three-body__dot"></div>
+                  <div className="three-body__dot"></div>
+                  <div className="three-body__dot"></div>
+                </div>
+              ) : (
+                "Submit"
+              )}
             </button>
           </div>
         </form>
@@ -89,7 +133,11 @@ const ContactSection = () => {
           />
         </div>
       </div>
-      <img className="opacity-80 mx-auto max-w-[300px] pb-10" src={Name} alt="" />
+      <img
+        className="opacity-80 mx-auto max-w-[300px] pb-10"
+        src={Name}
+        alt=""
+      />
     </div>
   );
 };

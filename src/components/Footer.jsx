@@ -1,8 +1,9 @@
 import React from "react";
+import "../index.css";
 
 const Footer = () => {
   return (
-    <div className="p-10">
+    <div className="p-10 bg-[#cfcfcf]">
       <ul className="flex space-x-4 mb-5">
         <li>
           <a href="/" className="text-gray-800 hover:text-gray-600">
@@ -10,12 +11,18 @@ const Footer = () => {
           </a>
         </li>
         <li>
-          <a href="#about-section" className="text-gray-800 hover:text-gray-600">
+          <a
+            href="#about-section"
+            className="text-gray-800 hover:text-gray-600"
+          >
             About
           </a>
         </li>
         <li>
-          <a href="#services-section" className="text-gray-800 hover:text-gray-600">
+          <a
+            href="#services-section"
+            className="text-gray-800 hover:text-gray-600"
+          >
             Services
           </a>
         </li>
@@ -30,7 +37,16 @@ const Footer = () => {
           </a>
         </li>
       </ul>
-      <p className="text-center text-[12px]">All Rights Reserved: TechPro Solutions LTD.</p>
+      <p className="text-center text-[12px]">
+        All Rights Reserved: TechPro Solutions LTD.
+      </p>
+      <div className="flex my-10">
+        <div className="three-body drop-shadow-lg">
+          <div className="three-body__dot"></div>
+          <div className="three-body__dot"></div>
+          <div className="three-body__dot"></div>
+        </div>
+      </div>
     </div>
   );
 };
